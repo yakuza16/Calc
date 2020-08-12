@@ -106,18 +106,25 @@ height: 25vh;
 
 }
 
-@media (min-width:1024px){
+@media (min-width:1200px){
     body {
         background-color: #aaa;
     }
 
 
     .calculator {
-        margin: 40px auto;
+        margin: 90px auto;
         border: 1px solid black;
-        width: 50%;
-        height: 92vh;
+        width: 30%;
+        height: 70vh;
     }
+    .calculator__last-actions, .calculator__result {
+        flex-basis: 55%;
+    }
+    .calculator__button {
+        font-size: 40px;
+        line-height: 6rem;
+      }
 
 
 
