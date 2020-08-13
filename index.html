@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="calculator">
-      <div class="calculator__display-panel">
-        <input type="number" disabled class="calculator__result" />
-      </div>
-      <div class="calculator__buttons-panel">
-        <button data-action="reset" class="calculator__button">C</button>
-        <button data-action="multiply" class="calculator__button">*</button>
-        <button data-action="divide" class="calculator__button">/</button>
-        <button data-action="dot" class="calculator__button">.</button>
-        <button data-number="7" class="calculator__button">7</button>
-        <button data-number="8" class="calculator__button">8</button>
-        <button data-number="9" class="calculator__button">9</button>
-        <button data-action="addition" class="calculator__button">+</button>
-        <button data-number="4" class="calculator__button">4</button>
-        <button data-number="5" class="calculator__button">5</button>
-        <button data-number="6" class="calculator__button">6</button>
-        <button data-action="substraction" class="calculator__button">-</button>
-        <button data-number="1" class="calculator__button">1</button>
-        <button data-number="2" class="calculator__button">2</button>
-        <button data-number="3" class="calculator__button">3</button>
-        <button data-action="result" class="calculator__button">=</button>
-        <button data-number="0" class="calculator__button">0</button>
-      </div>
+        <div class="calculator__display-panel">
+            <span class="history"></span>
+            <input id="display" type="text" class="calculator__result" />
+        </div>
+        <div class="calculator__buttons-panel">
+            <button data-reset class="calculator__button">C</button>
+            <button data-multiply class="calculator__button">*</button>
+            <button data-divide class="calculator__button">/</button>
+            <button data-dot class="calculator__button">.</button>
+            <button data-number="7" class="calculator__button">7</button>
+            <button data-number="8" class="calculator__button">8</button>
+            <button data-number="9" class="calculator__button">9</button>
+            <button data-addition class="calculator__button">+</button>
+            <button data-number="4" class="calculator__button">4</button>
+            <button data-number="5" class="calculator__button">5</button>
+            <button data-number="6" class="calculator__button">6</button>
+            <button data-substraction class="calculator__button">-</button>
+            <button data-number="1" class="calculator__button">1</button>
+            <button data-number="2" class="calculator__button">2</button>
+            <button data-number="3" class="calculator__button">3</button>
+            <button data-result class="calculator__button">=</button>
+            <button data-number="0" class="calculator__button">0</button>
+        </div>
     </div>
-  </body>
+    <script src="Calculator.js"></script>
+    <script>
+        const pageCalc = new Calculator()
+        pageCalc.initializeCalculator()
+    </script>
+</body>
+
 </html>
