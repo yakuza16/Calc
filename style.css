@@ -36,7 +36,8 @@ body {
 
 }
 
-.calculator__result {
+.calculator__result,
+.calculator__history {
     flex-basis: 100%;
 }
 
