@@ -64,6 +64,12 @@ body {
     cursor: pointer;
 }
 
+.calculator__button:focus {
+    color: rgb(19, 14, 14);
+    background-color: rgba(190, 135, 135, 0.795);
+    font-weight: bold;
+}
+
 .calculator__button:nth-last-child(1) {
     flex-basis: 100%;
 }
