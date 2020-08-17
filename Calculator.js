@@ -10,7 +10,6 @@ class Calculator {
       actions: "[data-action]",
       actionBtns: {
         reset: "[data-reset]",
-        dot: "[data-dot]",
         result: "[data-result]",
       },
     };
@@ -49,7 +48,7 @@ class Calculator {
   }
 
   pickNumbers(e) {
-    const pickedNums = (this.displayResult.value += e.target.dataset.number);
+    (this.displayResult.value += e.target.dataset.number);
   }
 
   action(e) {
@@ -98,6 +97,7 @@ class Calculator {
         break;
     }
   }
+
 
   sum(a, b) {
     return a + b;
