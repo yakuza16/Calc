@@ -1,8 +1,6 @@
 class Calculator {
   constructor() {
     this.specialAction = "";
-    this.repeatedValue = null;
-
     this.UiSelectors = {
       history: ".calculator__history",
       display: "display",
@@ -21,12 +19,9 @@ class Calculator {
       ...document.querySelectorAll(this.UiSelectors.numberBtns),
     ];
     this.resetBtn = document.querySelector(this.UiSelectors.actionBtns.reset);
-
     this.resultBtn = document.querySelector(this.UiSelectors.actionBtns.result);
     this.actions = document.querySelectorAll(this.UiSelectors.actions);
-
     this.displayResult.value = "";
-
     this.addListeners();
   }
 
@@ -48,7 +43,7 @@ class Calculator {
   }
 
   pickNumbers(e) {
-    (this.displayResult.value += e.target.dataset.number);
+    this.displayResult.value += e.target.dataset.number;
   }
 
   action(e) {
@@ -56,17 +51,18 @@ class Calculator {
       this.specialAction = e.target.dataset.action;
       this.history.value = Number(this.displayResult.value);
       this.displayResult.value = "";
+
     }
   }
 
   checkResult() {
     switch (this.specialAction) {
       case "+":
-        this.displayResult.value = this.sum(
+        this.displayResult.value = this.add(
           Number(this.history.value),
           Number(this.displayResult.value)
         );
-        this.specialAction = "";
+        this.specialAction = ''
         break;
 
       case "-":
@@ -74,7 +70,7 @@ class Calculator {
           Number(this.history.value),
           Number(this.displayResult.value)
         );
-        this.specialAction = "";
+        this.specialAction = ''
         break;
 
       case "*":
@@ -82,7 +78,7 @@ class Calculator {
           Number(this.history.value),
           Number(this.displayResult.value)
         );
-        this.specialAction = "";
+        this.specialAction = ''
         break;
 
       case "/":
@@ -90,16 +86,22 @@ class Calculator {
           Number(this.history.value),
           Number(this.displayResult.value)
         );
-        this.specialAction = "";
+        this.specialAction = ''
+        break;
+
+      case 'power':
+        this.displayResult.value = Math.pow(Number(this.history.value), Number(this.displayResult.value));
+        this.specialAction = ''
         break;
 
       default:
+        this.history.value = this.displayResult.value;
+        this.specialAction = ''
         break;
     }
   }
 
-
-  sum(a, b) {
+  add(a, b) {
     return a + b;
   }
 

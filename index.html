@@ -11,8 +11,8 @@
 <body>
   <div class="calculator">
     <div class="calculator__display-panel">
-      <input type="text" class="calculator__history" placeholder="Previous result" />
-      <input id="display" type="text" class="calculator__result" />
+      <input type="text" readonly class="calculator__history" placeholder="Previous result" />
+      <input id="display" type="text" readonly class="calculator__result" placeholder="0" />
     </div>
     <div class="calculator__buttons-panel">
       <button data-reset class="calculator__button">C</button>
@@ -32,6 +32,7 @@
       <button data-number="3" class="calculator__button">3</button>
       <button data-result class="calculator__button">=</button>
       <button data-number="0" class="calculator__button">0</button>
+      <button data-action="power" class="calculator__button calculator__power">x2</button>
     </div>
   </div>
   <script src="Calculator.js"></script>
