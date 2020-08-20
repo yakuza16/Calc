@@ -87,7 +87,6 @@ body {
   background-color: var(--secondary-color-thirty);
   color: #fff;
   transition: 0.3s;
-  animation: glow 1s ease-in-out infinite alternate;
 }
 
 .calculator__power {
@@ -148,6 +147,7 @@ body {
 
   .calculator__button {
     font-size: 4rem;
+    animation: glow 1s ease-in-out infinite alternate;
   }
 }
 
