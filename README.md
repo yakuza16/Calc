@@ -1,5 +1,7 @@
 # Calculator
 
+![](https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png)
+
 ## Application made in:
 
 **HTML** 
