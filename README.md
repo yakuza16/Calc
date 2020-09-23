@@ -1,4 +1,4 @@
-# [Calculator](http://https://yakuza16.github.io/Calc/ "Calculator")
+# [Calculator](https://yakuza16.github.io/Calc/ "Calculator")
 
 ![](https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png)
 
