@@ -9,6 +9,7 @@ class Calculator {
       actionBtns: {
         reset: "[data-reset]",
         result: "[data-result]",
+        dot: "[data-dot]"
       },
     };
   }
@@ -21,6 +22,7 @@ class Calculator {
     this.resetBtn = document.querySelector(this.UiSelectors.actionBtns.reset);
     this.resultBtn = document.querySelector(this.UiSelectors.actionBtns.result);
     this.actions = document.querySelectorAll(this.UiSelectors.actions);
+    this.dotBtn = document.querySelector(this.UiSelectors.actionBtns.dot);
     this.displayResult.value = "";
     this.addListeners();
   }
@@ -33,6 +35,7 @@ class Calculator {
     this.resetBtn.addEventListener("click", () => {
       this.displayResult.value = "";
       this.history.value = "";
+      this.dotBtn.removeAttribute('disabled');
     });
 
     this.resultBtn.addEventListener("click", () => this.checkResult());
@@ -40,6 +43,15 @@ class Calculator {
     this.actions.forEach((action) => {
       action.addEventListener("click", (e) => this.action(e));
     });
+    this.dotBtn.addEventListener('click', (e) => this.pickDot(e));
+  }
+
+  pickDot(e) {
+    if (!this.displayResult.value) {
+      this.displayResult.value = '0';
+    }
+    this.displayResult.value += e.target.dataset.dot;
+    this.dotBtn.setAttribute('disabled', true);
   }
 
   pickNumbers(e) {
@@ -51,7 +63,7 @@ class Calculator {
       this.specialAction = e.target.dataset.action;
       this.history.value = Number(this.displayResult.value);
       this.displayResult.value = "";
-
+      this.dotBtn.removeAttribute('disabled');
     }
   }
 
@@ -61,15 +73,15 @@ class Calculator {
         this.displayResult.value = this.add(
           Number(this.history.value),
           Number(this.displayResult.value)
-        );
+        ).toFixed(3);
         this.specialAction = ''
         break;
 
       case "-":
-        this.displayResult.value = this.substract(
+        this.displayResult.value = this.subtract(
           Number(this.history.value),
           Number(this.displayResult.value)
-        );
+        ).toFixed(3);
         this.specialAction = ''
         break;
 
@@ -77,7 +89,7 @@ class Calculator {
         this.displayResult.value = this.multiply(
           Number(this.history.value),
           Number(this.displayResult.value)
-        );
+        ).toFixed(3);
         this.specialAction = ''
         break;
 
@@ -85,18 +97,20 @@ class Calculator {
         this.displayResult.value = this.divide(
           Number(this.history.value),
           Number(this.displayResult.value)
-        );
+        ).toFixed(3);
         this.specialAction = ''
         break;
 
       case 'power':
-        this.displayResult.value = Math.pow(Number(this.history.value), Number(this.displayResult.value));
+        this.displayResult.value = Math.pow(Number(this.history.value), Number(this.displayResult.value)).toFixed(3);
         this.specialAction = ''
         break;
 
+
       default:
         this.history.value = this.displayResult.value;
-        this.specialAction = ''
+        this.specialAction = '';
+        this.dotBtn.setAttribute('disabled', true);
         break;
     }
   }
@@ -105,7 +119,7 @@ class Calculator {
     return a + b;
   }
 
-  substract(a, b) {
+  subtract(a, b) {
     return a - b;
   }
 
