@@ -1,5 +1,8 @@
 class Calculator {
   constructor() {
+
+    this.displayNegativeNumber = this.displayNegativeNumber.bind(this)
+    this.canDisplayMinus = true;
     this.specialAction = "";
     this.UiSelectors = {
       history: ".calculator__history",
@@ -10,7 +13,8 @@ class Calculator {
       actionBtns: {
         reset: "[data-reset]",
         result: "[data-result]",
-        dot: "[data-dot]"
+        dot: "[data-dot]",
+        minus: "[data-action='-']"
       },
     };
   }
@@ -25,6 +29,7 @@ class Calculator {
     this.actions = document.querySelectorAll(this.UiSelectors.actions);
     this.dotBtn = document.querySelector(this.UiSelectors.actionBtns.dot);
     this.actualActionDisplay = document.querySelector(this.UiSelectors.actualAction);
+    this.minusBtn = document.querySelector(this.UiSelectors.actionBtns.minus)
     this.displayResult.value = "";
     this.addListeners();
   }
@@ -42,6 +47,14 @@ class Calculator {
       action.addEventListener("click", (e) => this.action(e));
     });
     this.dotBtn.addEventListener('click', (e) => this.pickDot(e));
+    this.minusBtn.addEventListener('click', this.displayNegativeNumber)
+
+  }
+
+  displayNegativeNumber() {
+    this.displayResult.value += '-';
+    this.actualActionDisplay.textContent = '-'
+    this.canDisplayMinus = false;
   }
 
   resetCalculator() {
@@ -49,6 +62,8 @@ class Calculator {
     this.displayResult.value = "";
     this.history.value = "";
     this.dotBtn.removeAttribute('disabled');
+    this.canDisplayMinus = true;
+    this.minusBtn.addEventListener('click', this.displayNegativeNumber)
   }
 
   pickDot(e) {
@@ -60,7 +75,11 @@ class Calculator {
   }
 
   pickNumbers(e) {
-    this.displayResult.value += e.target.dataset.number;
+    if (this.canDisplayMinus === false) {
+      this.minusBtn.removeEventListener('click', this.displayNegativeNumber);
+      this.displayResult.value += e.target.dataset.number;
+    }
+
   }
 
   action(e) {
