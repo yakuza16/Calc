@@ -44,6 +44,15 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 5px;
+  position: relative;
+}
+
+.calculator__display-action {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  font-size: 20px;
 }
 
 .calculator__result,
@@ -118,6 +127,7 @@ body {
   .calculator__button {
     font-size: 2.7rem;
   }
+
 }
 
 @media (min-width: 1024px) {
@@ -143,6 +153,10 @@ body {
 
   .calculator__history {
     font-size: 1.5rem;
+  }
+
+  .calculator__display-action {
+    font-size: 50px;
   }
 
   .calculator__button {

@@ -4,6 +4,7 @@ class Calculator {
     this.UiSelectors = {
       history: ".calculator__history",
       display: "display",
+      actualAction: '[data-actual-action]',
       numberBtns: "[data-number]",
       actions: "[data-action]",
       actionBtns: {
@@ -23,6 +24,7 @@ class Calculator {
     this.resultBtn = document.querySelector(this.UiSelectors.actionBtns.result);
     this.actions = document.querySelectorAll(this.UiSelectors.actions);
     this.dotBtn = document.querySelector(this.UiSelectors.actionBtns.dot);
+    this.actualActionDisplay = document.querySelector(this.UiSelectors.actualAction);
     this.displayResult.value = "";
     this.addListeners();
   }
@@ -32,11 +34,7 @@ class Calculator {
       btnNum.addEventListener("click", (e) => this.pickNumbers(e));
     });
 
-    this.resetBtn.addEventListener("click", () => {
-      this.displayResult.value = "";
-      this.history.value = "";
-      this.dotBtn.removeAttribute('disabled');
-    });
+    this.resetBtn.addEventListener("click", () => this.resetCalculator());
 
     this.resultBtn.addEventListener("click", () => this.checkResult());
 
@@ -44,6 +42,13 @@ class Calculator {
       action.addEventListener("click", (e) => this.action(e));
     });
     this.dotBtn.addEventListener('click', (e) => this.pickDot(e));
+  }
+
+  resetCalculator() {
+    this.actualActionDisplay.textContent = '';
+    this.displayResult.value = "";
+    this.history.value = "";
+    this.dotBtn.removeAttribute('disabled');
   }
 
   pickDot(e) {
@@ -59,8 +64,12 @@ class Calculator {
   }
 
   action(e) {
+    if (!this.displayResult.value) {
+      return
+    }
     if (!this.specialAction) {
       this.specialAction = e.target.dataset.action;
+      this.actualActionDisplay.textContent = this.specialAction;
       this.history.value = Number(this.displayResult.value);
       this.displayResult.value = "";
       this.dotBtn.removeAttribute('disabled');
@@ -110,6 +119,7 @@ class Calculator {
       default:
         this.history.value = this.displayResult.value;
         this.specialAction = '';
+        this.actualActionDisplay.textContent = '=';
         this.dotBtn.setAttribute('disabled', true);
         break;
     }
