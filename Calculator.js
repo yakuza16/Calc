@@ -75,11 +75,8 @@ class Calculator {
   }
 
   pickNumbers(e) {
-    if (this.canDisplayMinus === false) {
-      this.minusBtn.removeEventListener('click', this.displayNegativeNumber);
-      this.displayResult.value += e.target.dataset.number;
-    }
-
+    this.minusBtn.removeEventListener('click', this.displayNegativeNumber);
+    this.displayResult.value += e.target.dataset.number;
   }
 
   action(e) {
@@ -96,44 +93,34 @@ class Calculator {
   }
 
   checkResult() {
+    const historyValue = Number(this.history.value);
+    const resultValue = Number(this.displayResult.value);
+
     switch (this.specialAction) {
       case "+":
-        this.displayResult.value = this.add(
-          Number(this.history.value),
-          Number(this.displayResult.value)
-        ).toFixed(3);
+        this.displayResult.value = this.add(historyValue, resultValue).toFixed(3);
         this.specialAction = ''
         break;
 
       case "-":
-        this.displayResult.value = this.subtract(
-          Number(this.history.value),
-          Number(this.displayResult.value)
-        ).toFixed(3);
+        this.displayResult.value = this.subtract(historyValue, resultValue).toFixed(3);
         this.specialAction = ''
         break;
 
       case "*":
-        this.displayResult.value = this.multiply(
-          Number(this.history.value),
-          Number(this.displayResult.value)
-        ).toFixed(3);
+        this.displayResult.value = this.multiply(historyValue, resultValue).toFixed(3);
         this.specialAction = ''
         break;
 
       case "/":
-        this.displayResult.value = this.divide(
-          Number(this.history.value),
-          Number(this.displayResult.value)
-        ).toFixed(3);
+        this.displayResult.value = this.divide(historyValue, resultValue).toFixed(3);
         this.specialAction = ''
         break;
 
       case 'power':
-        this.displayResult.value = Math.pow(Number(this.history.value), Number(this.displayResult.value)).toFixed(3);
+        this.displayResult.value = Math.pow(historyValue, resultValue).toFixed(3);
         this.specialAction = ''
         break;
-
 
       default:
         this.history.value = this.displayResult.value;
