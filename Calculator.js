@@ -75,7 +75,11 @@ class Calculator {
   }
 
   pickNumbers(e) {
-    this.minusBtn.removeEventListener('click', this.displayNegativeNumber);
+     this.minusBtn.removeEventListener('click', this.displayNegativeNumber);
+    if(!this.displayResult.value && e.target.dataset.number === '0'){
+      return
+    }
+   
     this.displayResult.value += e.target.dataset.number;
   }
 
@@ -98,27 +102,27 @@ class Calculator {
 
     switch (this.specialAction) {
       case "+":
-        this.displayResult.value = this.add(historyValue, resultValue).toFixed(3);
+        this.displayResult.value = this.add(historyValue, resultValue);
         this.specialAction = ''
         break;
 
       case "-":
-        this.displayResult.value = this.subtract(historyValue, resultValue).toFixed(3);
+        this.displayResult.value = this.subtract(historyValue, resultValue);
         this.specialAction = ''
         break;
 
       case "*":
-        this.displayResult.value = this.multiply(historyValue, resultValue).toFixed(3);
+        this.displayResult.value = this.multiply(historyValue, resultValue);
         this.specialAction = ''
         break;
 
       case "/":
-        this.displayResult.value = this.divide(historyValue, resultValue).toFixed(3);
+        this.displayResult.value = this.divide(historyValue, resultValue);
         this.specialAction = ''
         break;
 
       case 'power':
-        this.displayResult.value = Math.pow(historyValue, resultValue).toFixed(3);
+        this.displayResult.value = Math.pow(historyValue, resultValue).toFixed(2);
         this.specialAction = ''
         break;
 
@@ -132,18 +136,18 @@ class Calculator {
   }
 
   add(a, b) {
-    return a + b;
+    return (a + b).toFixed(2);
   }
 
   subtract(a, b) {
-    return a - b;
+    return (a - b).toFixed(2);
   }
 
   multiply(a, b) {
-    return a * b;
+    return (a * b).toFixed(2);
   }
 
   divide(a, b) {
-    return a / b;
+    return (a / b).toFixed(2);
   }
 }
