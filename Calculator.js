@@ -1,13 +1,22 @@
+const EMPTY_STRING = '';
+const SIGN_ADDITION = "+";
+const SIGN_DIVIDE = "/";
+const SIGN_EQUAL = "=";
+const SIGN_MULTIPLY = "*";
+const SIGN_POWER = "power";
+const SIGN_SUBTRACTION = "-";
+const ZERO_NUMBER_STRING = "0";
+
 class Calculator {
   constructor() {
 
     this.displayNegativeNumber = this.displayNegativeNumber.bind(this)
     this.canDisplayMinus = true;
-    this.specialAction = "";
+    this.specialAction = EMPTY_STRING;
     this.UiSelectors = {
       history: ".calculator__history",
       display: "display",
-      actualAction: '[data-actual-action]',
+      actualAction: "[data-actual-action]",
       numberBtns: "[data-number]",
       actions: "[data-action]",
       actionBtns: {
@@ -30,7 +39,7 @@ class Calculator {
     this.dotBtn = document.querySelector(this.UiSelectors.actionBtns.dot);
     this.actualActionDisplay = document.querySelector(this.UiSelectors.actualAction);
     this.minusBtn = document.querySelector(this.UiSelectors.actionBtns.minus)
-    this.displayResult.value = "";
+    this.displayResult.value = '';
     this.addListeners();
   }
 
@@ -52,31 +61,31 @@ class Calculator {
   }
 
   displayNegativeNumber() {
-    this.displayResult.value += '-';
-    this.actualActionDisplay.textContent = '-'
+    this.displayResult.value += SIGN_SUBTRACTION;
+    this.actualActionDisplay.textContent = SIGN_SUBTRACTION;
     this.canDisplayMinus = false;
   }
 
   resetCalculator() {
-    this.actualActionDisplay.textContent = '';
-    this.displayResult.value = "";
-    this.history.value = "";
-    this.dotBtn.removeAttribute('disabled');
+    this.actualActionDisplay.textContent = EMPTY_STRING;
+    this.displayResult.value = EMPTY_STRING;
+    this.history.value = EMPTY_STRING;
+    this.dotBtn.removeAttribute("disabled");
     this.canDisplayMinus = true;
-    this.minusBtn.addEventListener('click', this.displayNegativeNumber)
+    this.minusBtn.addEventListener("click", this.displayNegativeNumber)
   }
 
   pickDot(e) {
     if (!this.displayResult.value) {
-      this.displayResult.value = '0';
+      this.displayResult.value = ZERO_NUMBER_STRING;
     }
     this.displayResult.value += e.target.dataset.dot;
-    this.dotBtn.setAttribute('disabled', true);
+    this.dotBtn.setAttribute("disabled", true);
   }
 
   pickNumbers(e) {
-     this.minusBtn.removeEventListener('click', this.displayNegativeNumber);
-    if(!this.displayResult.value && e.target.dataset.number === '0'){
+     this.minusBtn.removeEventListener("click", this.displayNegativeNumber);
+    if(!this.displayResult.value && e.target.dataset.number === ZERO_NUMBER_STRING){
       return
     }
    
@@ -92,7 +101,7 @@ class Calculator {
       this.actualActionDisplay.textContent = this.specialAction;
       this.history.value = Number(this.displayResult.value);
       this.displayResult.value = "";
-      this.dotBtn.removeAttribute('disabled');
+      this.dotBtn.removeAttribute("disabled");
     }
   }
 
@@ -101,35 +110,35 @@ class Calculator {
     const resultValue = Number(this.displayResult.value);
 
     switch (this.specialAction) {
-      case "+":
+      case SIGN_ADDITION:
         this.displayResult.value = this.add(historyValue, resultValue);
-        this.specialAction = ''
+        this.specialAction = EMPTY_STRING
         break;
 
-      case "-":
+      case SIGN_SUBTRACTION:
         this.displayResult.value = this.subtract(historyValue, resultValue);
-        this.specialAction = ''
+        this.specialAction = EMPTY_STRING
         break;
 
-      case "*":
+      case SIGN_MULTIPLY:
         this.displayResult.value = this.multiply(historyValue, resultValue);
-        this.specialAction = ''
+        this.specialAction = EMPTY_STRING
         break;
 
-      case "/":
+      case SIGN_DIVIDE:
         this.displayResult.value = this.divide(historyValue, resultValue);
-        this.specialAction = ''
+        this.specialAction = EMPTY_STRING
         break;
 
-      case 'power':
+      case SIGN_POWER:
         this.displayResult.value = Math.pow(historyValue, resultValue).toFixed(2);
-        this.specialAction = ''
+        this.specialAction = EMPTY_STRING
         break;
 
       default:
         this.history.value = this.displayResult.value;
-        this.specialAction = '';
-        this.actualActionDisplay.textContent = '=';
+        this.specialAction = EMPTY_STRING;
+        this.actualActionDisplay.textContent = SIGN_EQUAL;
         this.dotBtn.setAttribute('disabled', true);
         break;
     }
