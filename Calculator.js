@@ -144,19 +144,19 @@ class Calculator {
     }
   }
 
-  add(a, b) {
-    return (a + b).toFixed(2);
+  add(firstNum, secondNum) {
+    return (firstNum + secondNum).toFixed(2);
   }
 
-  subtract(a, b) {
-    return (a - b).toFixed(2);
+  subtract(firstNum, secondNum) {
+    return (firstNum - secondNum).toFixed(2);
   }
 
-  multiply(a, b) {
-    return (a * b).toFixed(2);
+  multiply(firstNum, secondNum) {
+    return (firstNum * secondNum).toFixed(2);
   }
 
-  divide(a, b) {
-    return (a / b).toFixed(2);
+  divide(firstNum, secondNum) {
+    return (firstNum / secondNum).toFixed(2);
   }
 }
