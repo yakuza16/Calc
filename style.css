@@ -95,7 +95,7 @@ body {
   font-family: var(--cyberpunk-font);
   background-color: var(--secondary-color-thirty);
   color: #fff;
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
 }
 
 .calculator__power {
@@ -106,6 +106,10 @@ body {
 .calculator__button:focus {
   font-weight: bold;
   color: var(--basic-color);
+}
+
+.calculator__button:hover {
+  background-color: var(--main-color-sixty);
 }
 
 @media (orientation: landscape) {
@@ -127,7 +131,6 @@ body {
   .calculator__button {
     font-size: 2.7rem;
   }
-
 }
 
 @media (min-width: 1024px) {
