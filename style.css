@@ -98,6 +98,10 @@ body {
   transition: 0.3s ease-in-out;
 }
 
+.remove-last-char {
+  flex-grow: 0;
+}
+
 .calculator__power {
   text-align: center;
   flex-basis: 5%;
