@@ -100,6 +100,13 @@ body {
 
 .remove-last-char {
   flex-grow: 0;
+  display: flex;
+  align-items: center;
+  place-content: center;
+}
+
+.remove-last-char__image {
+  width: 50%;
 }
 
 .calculator__power {
